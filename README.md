@@ -36,9 +36,9 @@ Questo sistema consente al computer di sembrare “intenzionale”, pur senza un
 Come Eseguirlo?
 ---------------
 Nessun problema su sistemi Windows a 32 bit sia sotto cmd che sotto command.
-Per far girare BLOCK 5 su sistemi moderni a 64 bit, avrai bisogno di un emulatore DOS, come DOSBox (scaricalo dal sito ufficiale: https://www.dosbox.com/)
+Per far girare BLOCK 5 su sistemi moderni a 64 bit, avrai bisogno di un emulatore DOS come DOSBox (https://www.dosbox.com/) o DOSBox-X (https://www.dosbox-x.com).
 
-Poiché BLOCK 5 utilizza chiamate a basso livello (CALL INT86OLD) per interagire con mouse e grafica VGA, serve un compilatore completo di BASIC come QuickBASIC 4.5, QBX 7.1, QBDOS 1.0 ossia Visual Basic for DOS (puoi cercarlo online con parole chiave come “QuickBASIC download” e installarlo in una cartella accessibile).
+Poiché BLOCK 5 utilizza chiamate a basso livello (CALL INT86OLD) per interagire con mouse e VGA, serve un compilatore Microsoft BASIC come: QuickBASIC 4.5, QBX 7.1, VBDOS 1.0 (Visual Basic for DOS) che puoi cercare online con parole chiave come “QuickBASIC download” e installarlo in una cartella accessibile.
 
 Clona o Scarica questo Repository. Ottieni il file BLOCK5.BAS da questo progetto e compilalo in eseguibile standalone (.EXE) per ottenere il corretto funzionamento del programma.
 
