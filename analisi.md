@@ -2,11 +2,11 @@ Analisi del Codice "BLOCK 5" (1990) di Marco
 
 1. Setup Iniziale e Dichiarazioni
 
-    'BLOCK 5 versione 1.0 1990 by Marco: Un'ottima intestazione che identifica l'autore e la versione!
+    'BLOCK 5 versione 1.0 1990 by Marco da Venezia: Un'ottima intestazione che identifica l'autore e la versione!
 
-    'Richiede VGA, mouse,: Specifiche importanti per l'ambiente di esecuzione dell'epoca.
+    'Richiede VGA, mouse opzionale: Specifiche importanti per l'ambiente di esecuzione dell'epoca.
 
-    'Compilare con codice debug: Un'indicazione utile per lo sviluppatore.
+    'Compilare in fase di test con codice debug: Un'indicazione utile per lo sviluppatore.
 
     DEFINT A-Z: Dichiarazione implicita di tutte le variabili come Integer, una pratica comune in BASIC per ottimizzare la memoria e la velocità.
 
@@ -224,8 +224,8 @@ Qui entriamo nel cuore dell'IA! Si basano sull'analisi della matrice GG (lo stat
 
             La gestione del "Passa Turno" con GS.Pena è una buona meccanica di gioco.
 
-            PALETTE: Una chicca nascosta! Sembra che il tasto ; cambi la palette di colori del gioco. Un piccolo easter egg o funzione di debug! 😄
+            PALETTE: Il tasto . cambia i colori delle pedine.
 
     SUB Z.Marco:
 
-        Una sub di debug/test molto semplice che stampa lo stato numerico della griglia (GG(i, j)) direttamente a schermo. Utile per visualizzare la logica interna.
+        Una sub di debug/test che stampa lo stato numerico della griglia (GG(i, j)) direttamente a schermo. Utile per visualizzare la logica interna.
