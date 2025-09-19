@@ -1,7 +1,10 @@
-'BLOCK 5 versione 1.0
-'Richiede VGA e mouse
-'Compilare con codice debug
-'
+'BLOCK 5 versione 1.0 1990 by Marco da Venezia
+'Richiede VGA, mouse ozionale
+'Senza VGA o superiore, restituisce il controllo al DOS
+'Se mouse non istallato, usa i tasti direzionali ed Enter
+'Barra spazio per demo on/off, punto per colori pedine
+'Caricamento: QB/LQB
+
 DEFINT A-Z
 DECLARE FUNCTION Analisi4 (t)
 DECLARE FUNCTION Analisi5 (t)
@@ -10,16 +13,17 @@ DECLARE FUNCTION AnalisiM (t)
 DECLARE FUNCTION AnalisiValida (i, j, t)
 DECLARE SUB Colora5 (t)
 DECLARE SUB DisegnaCursore (i, j, t)
+DECLARE SUB DisegnaFinestre ()
 DECLARE SUB DisegnaPedina (i, j, t)
 DECLARE SUB Editor (Edit$)
 DECLARE SUB FineGioco (a$)
-DECLARE SUB DisegnaFinestre ()
 DECLARE SUB Messaggio (a$, s)
 DECLARE SUB MostraControlli ()
 DECLARE SUB MostraRecord ()
 DECLARE SUB Pulizia ()
 DECLARE SUB Punteggi ()
 DECLARE SUB Resoconto ()
+DECLARE SUB TestPC ()
 DECLARE SUB TurnoComputer (Rig, Col)
 DECLARE SUB TurnoGiocatore (Rig, Col)
 DECLARE SUB PD ()
@@ -50,11 +54,14 @@ DECLARE SUB Z.Marco ()
     DIM SHARED GS AS GiocoStato
     DIM SHARED GG(30, 30), GV(30, 30)
     DIM SHARED p$(7)
+    DIM SHARED pc386
 
     CONST Vero = -1
     CONST Falso = 0
     CONST Computer = 1
     CONST Giocatore = 4
+
+    TestPC
 
     FOR i = 1 TO 19
       FOR j = 1 TO 19
@@ -297,7 +304,7 @@ FUNCTION AnalisiM (t)
         IF GV(i, j) > Mig THEN
           Mig = GV(i, j)
           r = i: c = j
-          REM COLOR 15: LOCATE 5 + i, 2 * j: PRINT GV(i, j): SLEEP
+          REM COLOR 15: LOCATE 5 + i, 2 * j: PRINT GV(i, j): SLEEP ' per collaudo
         END IF
       NEXT
     NEXT
@@ -421,7 +428,7 @@ SUB DisegnaPedina (i, j, t)
   CIRCLE (j * 16 + 280 - 10, i * 16 + 80 - 10), 6, 0
   PAINT (j * 16 + 280 - 9, i * 16 + 80 - 9), t, 0
  
-  IF GS.Demo THEN SLEEP (1)
+  IF GS.Demo AND pc386 THEN SLEEP (pc386) ' Pausa sec. TestPC
 
   InReg%(1) = 1: CALL INT86OLD(&H33, InReg%(), OutReg%())
 
@@ -480,7 +487,7 @@ SUB FineGioco (a$)
       Punteggi
     ELSE
       MostraRecord
-      COLOR 14: LOCATE 23, 7: PRINT " 컴컴"; a$; "컴컴 "
+      COLOR 14: LOCATE 23, 7: PRINT " ????"; a$; "???? "
     END IF
   END IF
 
@@ -567,11 +574,10 @@ SUB PD
 
   COLOR 3
   LINE (48, 278)-(222, 375), 0, BF
-  LOCATE 19, 9: PRINT "BLOCK 5 Ver. 1.00"
-  LOCATE 21, 9: PRINT "  Freeware 1990  "
-  LOCATE 22, 9: PRINT "    PD 1994 BY   "
-  LOCATE 23, 9: PRINT " Marco da Venezia"
-  
+  LOCATE 19, 9: PRINT "BLOCK 5  Ver. 1.00"
+  LOCATE 21, 9: PRINT "  Freeware 1990   "
+  LOCATE 22, 9: PRINT "    PD 1994 by    "
+  LOCATE 23, 9: PRINT " Marco da Venezia "
   Messaggio " GAME OVER ", 3
   Pulizia
   END
@@ -582,7 +588,7 @@ SUB Pulizia
  
   FOR i = 0 TO 320
     LINE (i, 3 / 4 * i)-(640 - i, 480 - 3 / 4 * i), 0, B
-    SOUND 0, .1
+    IF pc386 THEN SOUND 0, pc386 / 33
   NEXT
 
 END SUB
@@ -648,9 +654,17 @@ SUB Resoconto
 
 END SUB
 
+SUB TestPC
+    t! = TIMER
+    WHILE TIMER - t! < 1
+        n! = n! + 1
+    WEND
+    IF n! > 20480 THEN pc386 = 1 ' Per ritardo in Demo
+END SUB
+
 SUB TurnoComputer (Rig, Col)
    
-  REM Z.Marco
+  REM Z.Marco ' Scommentare per collaudo
 
   GS.Turno = Computer
 
@@ -684,7 +698,7 @@ END SUB
 
 SUB TurnoGiocatore (Rig, Col)
 
-  REM Z.Marco
+  REM Z.Marco ' Scommentare per collaudo
 
   IF GS.Turno = Falso THEN EXIT SUB
 
@@ -697,9 +711,9 @@ SUB TurnoGiocatore (Rig, Col)
   DO
    
     IF GS.Demo THEN EXIT DO
-  
+ 
     a$ = INKEY$
-   
+  
     InReg%(1) = 3: CALL INT86OLD(&H33, InReg%(), OutReg%())
    
     Rig = (OutReg%(4) - 80 + 10) / 16
@@ -743,7 +757,7 @@ SUB TurnoGiocatore (Rig, Col)
       END IF
       IF LCASE$(a$) = "r" THEN MostraRecord
       IF LCASE$(a$) = "f" OR a$ = CHR$(27) THEN PD
-      IF RIGHT$(a$, 1) = ";" THEN
+      IF a$ = "." THEN ' Cambia colore pedine
         IF GS.Pal THEN
           GS.Pal = Falso
           PALETTE
@@ -829,12 +843,11 @@ SUB TurnoGiocatore (Rig, Col)
 END SUB
 
 SUB Z.Marco
- 
+  ' Griglietta per collaudo
   FOR i = 1 TO 19
     FOR j = 1 TO 19
-      LOCATE 5 + i, 2 * j: COLOR GG(i, j): PRINT GG(i, j)
+      LOCATE i, j: COLOR GG(i, j): PRINT LTRIM$(STR$(GG(i, j)))
     NEXT j
   NEXT i
-
 END SUB
 
