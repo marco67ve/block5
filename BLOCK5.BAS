@@ -723,7 +723,7 @@ SUB TurnoGiocatore (Rig, Col)
     Bot = OutReg%(2)
    
     IF Bot THEN s# = TIMER: WHILE TIMER - s# < .3: WEND
-    IF Bot = 2 THEN a$ = " ;"
+    IF Bot = 2 THEN a$ = "."
     IF Bot = 1 THEN
       IF c > 6 AND c < 27 THEN
         IF r = 8 THEN a$ = "n"
@@ -850,4 +850,5 @@ SUB Z.Marco
     NEXT j
   NEXT i
 END SUB
+
 
