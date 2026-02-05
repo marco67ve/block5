@@ -487,7 +487,7 @@ SUB FineGioco (a$)
       Punteggi
     ELSE
       MostraRecord
-      COLOR 14: LOCATE 23, 7: PRINT " ????"; a$; "???? "
+      COLOR 14: LOCATE 23, 7: PRINT " ────"; a$; "──── "
     END IF
   END IF
 
@@ -656,7 +656,7 @@ END SUB
 
 SUB TestPC
     t! = TIMER
-    WHILE TIMER - t! < 1
+    WHILE TIMER < t! + 1
         n! = n! + 1
     WEND
     IF n! > 20480 THEN pc386 = 1 ' Per ritardo in Demo
@@ -722,7 +722,7 @@ SUB TurnoGiocatore (Rig, Col)
     c = 1 + OutReg%(3) / 8
     Bot = OutReg%(2)
    
-    IF Bot THEN s# = TIMER: WHILE TIMER - s# < .3: WEND
+    IF Bot THEN s# = TIMER: WHILE TIMER < s# + .3: WEND
     IF Bot = 2 THEN a$ = "."
     IF Bot = 1 THEN
       IF c > 6 AND c < 27 THEN
@@ -850,5 +850,3 @@ SUB Z.Marco
     NEXT j
   NEXT i
 END SUB
-
-
