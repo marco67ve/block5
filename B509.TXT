@@ -1,0 +1,49 @@
+BLOCK 5 – Versione 0.9 (1987)
+-----------------------------
+Autore: Marco da Venezia
+
+REQUISITI
+---------
+- PC IBM XT/AT o compatibile
+- Scheda video CGA
+- MS-DOS 2.0 o superiore
+- Tastiera
+
+
+AVVIO
+-----
+Digitare:
+    B509 [N]
+
+dove [N] è la dimensione della griglia (da 10 a 17).
+Se non specificato, il gioco usa la griglia 15x15.
+
+COMANDI
+-------
+Frecce  : Muovi il cursore
+ENTER   : Posiziona la pedina
+N       : Nuova partita
+P       : Passa il turno (solo se il PC non ha ancora mosso)
+R       : Mostra i record
+F / ESC : Fine gioco
+SPAZIO  : Cambia la palette dei colori
+
+
+OBIETTIVO
+---------
+Allineare 5 pedine in orizzontale, verticale o diagonale.
+
+Caratteristiche principali:
+---------------------------
+- Interfaccia CGA a 16 colori
+- IA avversaria basata su un sistema euristico
+- Sistema di punteggi con salvataggio record
+- Semplici effetti sonori
+
+
+FILE
+----
+B509.BAS   - codice sorgente (QuickBASIC)
+B509.BAT   - file batch per avvio da menù DOS
+SCORES.B5  – archivio dei punteggi (generato automaticamente)
+

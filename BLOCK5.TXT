@@ -1,0 +1,48 @@
+﻿BLOCK 5 – Versione 1.0 (1990)
+-----------------------------
+Autore: Marco da Venezia
+
+REQUISITI
+---------
+- PC IBM XT/AT o 386
+- Scheda video VGA
+- MS-DOS 4.0 o superiore
+- Tastiera/mouse
+
+
+AVVIO
+-----
+Digitare:
+    BLOCK5
+
+COMANDI
+-------
+Frecce  : Muovi il cursore
+ENTER   : Posiziona la pedina
+N       : Nuova partita
+P       : Passa il turno (solo se il PC non ha ancora mosso)
+R       : Mostra i record
+F / ESC : Fine gioco
+SPAZIO  : Avvia la demo
+Punto   : Cambia la palette dei colori
+
+
+OBIETTIVO
+---------
+Allineare 5 pedine in orizzontale, verticale o diagonale.
+
+
+Caratteristiche principali:
+---------------------------
+- Intefaccia grafica VGA a 16 colori (640x480 pixel)
+- Supporto per il mouse (tramite chiamate dirette al BIOS MS-DOS INT 33h)
+- IA avversaria basata su un sistema euristico
+- Sistema di punteggi con salvataggio record
+- Semplici effetti sonori
+
+
+FILE
+----
+BLOCK5.BAS - codice sorgente (QuickBASIC)
+SCORES.B5  – archivio dei punteggi (generato automaticamente)
+
