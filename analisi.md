@@ -1,8 +1,26 @@
-Analisi del Codice "BLOCK 5" (1990) di Marco
+Analisi del codice BLOCK 5
+--------------------------
+Il cuore di BLOCK 5 è la sua intelligenza artificiale.
+All'epoca, senza librerie complesse o framework di machine learning, l'approccio era basato su logiche euristiche affinché il computer sembrasse “intenzionale”, pur senza una vera logica predittiva o apprendimento.
+
+Le principali funzioni IA sono:
+
+- Analisi4 e Analisi5: cercano sequenze di 4 o 5 pedine allineate per anticipare vittorie o bloccare l'avversario.
+- AnalisiM (Mosse Migliori): analizza ogni posizione della griglia e assegna punteggi alle caselle, favorendo quelle più strategiche.
+- AnalisiC (Mosse Casuali): mossa di fallback, per giocare anche in assenza di pattern riconoscibili.
+- Strategia a Priorità:
+    1. Vincere subito, se possibile.
+    2. Bloccare una vittoria imminente dell'avversario.
+    3. Cercare mosse con valore strategico (attacco).
+    4. Cercare mosse con valore difensivo (blocco).
+    5. In ultima istanza, una mossa casuale.
+
+ANALISI DELLA VERSIONE 1.0
+--------------------------
 
 1. Setup Iniziale e Dichiarazioni
 
-    'BLOCK 5 versione 1.0 1990 by Marco da Venezia: Un'ottima intestazione che identifica l'autore e la versione!
+    'BLOCK 5 versione 1.0 1990 by Marco da Venezia: Intestazione che identifica autore e versione.
 
     'Richiede VGA, mouse opzionale: Specifiche importanti per l'ambiente di esecuzione dell'epoca.
 
@@ -120,7 +138,7 @@ Qui entriamo nel cuore dell'IA! Si basano sull'analisi della matrice GG (lo stat
 
         Disegnano visivamente il cursore o la pedina sulla griglia.
 
-        Utilizzano CALL INT86OLD(&H33, InReg%(), OutReg%()) per disabilitare/abilitare il cursore del mouse (Servizio BIOS INT 33h). Questo mostra una conoscenza approfondita dell'interazione hardware/software dell'epoca! 🤩
+        Utilizzano CALL INT86OLD(&H33, InReg%(), OutReg%()) per disabilitare/abilitare il cursore del mouse (Servizio BIOS INT 33h). Questo mostra una conoscenza approfondita dell'interazione hardware/software dell'epoca!
 
         SOUND 5000, .1: Un suono quando viene piazzata una pedina! Un bel tocco per l'esperienza utente.
 
@@ -229,3 +247,6 @@ Qui entriamo nel cuore dell'IA! Si basano sull'analisi della matrice GG (lo stat
     SUB Z.Marco:
 
         Una sub di debug/test che stampa lo stato numerico della griglia (GG(i, j)) direttamente a schermo. Utile per visualizzare la logica interna.
+
+
+Analisi a cura di Gemini, 2025.
