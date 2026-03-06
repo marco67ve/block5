@@ -1,80 +1,73 @@
-﻿BLOCK 5: Un'Intelligenza Artificiale in BASIC del 1990
+# BLOCK 5 — Storia, versioni e restauri (1987–1990)
 
-Ciao a tutti, sono Marco da Venezia, e questo repository contiene un piccolo pezzo della mia storia di programmatore: "BLOCK 5", un gioco sviluppato in QuickBasic nel lontano 1990.
+BLOCK 5 è un gioco da tavolo digitale ispirato al concetto di "Five in a Row" (conosciuto anche come Gomoku o Connect 5).
+L'obiettivo è essere il primo giocatore (o il Computer) a posizionare cinque delle proprie pedine in linea, in orizzontale, verticale o diagonale, su una griglia quadrata.
 
-Questo progetto è stato il mio primo tentativo di simulare un'Intelligenza Artificiale (IA) in un ambiente di programmazione che, all'epoca, era all'avanguardia per gli hobbisti.
+Nato tra il 1987 e il 1990, scritto in QuickBASIC per i PC IBM dell’epoca, è un progetto che attraversa tre anni di evoluzione tecnica e personale: dalla prima versione in modalità testo del 1987, pensata per girare in modo fluido su un PC/XT, alla versione VGA del 1990, più ricca e scenografica, progettata per i nuovi AT e 386, questo progetto è stato il mio primo tentativo di simulare un'Intelligenza Artificiale (IA) in un ambiente di programmazione che, all'epoca, era all'avanguardia per gli hobbisti.
 
-Cos'è BLOCK 5?
---------------
-BLOCK 5 è un gioco da tavolo digitale ispirato al concetto di "Five in a Row" (conosciuto anche come Gomoku o Connect 5).  
-L'obiettivo è essere il primo giocatore (o il Computer) a posizionare cinque delle proprie pedine in linea, in orizzontale, verticale o diagonale, su una griglia 19x19.
+Questo repository raccoglie, restaura e documenta tutte le versioni storiche del gioco, con l’obiettivo di preservare non solo il codice, ma anche le scelte tecniche, le limitazioni hardware e la filosofia di programmazione dell’epoca.
+
+---
+
+## Origine del progetto
+
+BLOCK 5 nasce nel 1987 dopo l’incontro con un piccolo programma anonimo chiamato `B5.COM`. Quel software, probabilmente scritto in Assembly, presentava una versione essenziale del gioco “Five in a Row” (all’epoca noto in Occidente come *Block Five*). Era un eseguibile molto compatto, privo di grafica, con una griglia fissa 11×11 e una rappresentazione minimale delle pedine.
+
+Quell’esperienza fu lo spunto per creare una versione più ampia e leggibile, sfruttando le possibilità offerte dal QuickBASIC: colori, bordi, griglie variabili e un’interfaccia più chiara. BLOCK 5 non nasce quindi come una critica al programma originale, ma come una reinterpretazione personale, più orientata alla giocabilità e alla presentazione grafica, pur mantenendo la leggerezza e la compatibilità con i PC dell’epoca.
+
+---
+
+## Perché si chiama “BLOCK 5” e non “Gomoku”
+
+Quando il gioco fu scritto nel 1987, il nome “Gomoku” non era conosciuto in Italia né in gran parte dell’Europa occidentale. Il gioco circolava sotto nomi occidentali come “Five in a Row”, “Gobang” o “Block Five”, spesso in piccoli programmi anonimi trovati su floppy.
+
+La versione che ispirò BLOCK 5 era un file chiamato `B5.COM`, che all’avvio mostrava “Block Five”. Non esisteva Internet, non c’erano fonti centralizzate, e quel nome era semplicemente il nome con cui il gioco era conosciuto qui.
+
+BLOCK 5 conserva quindi il nome storico con cui nacque il progetto, mentre “Gomoku” è il nome internazionale del gioco tradizionale.
+
+---
+
+## Le due versioni principali
+
+### Versione 0.9 (1987)
+La 0.9 è la versione originale, scritta per funzionare in modalità testo (SCREEN 0) e ottimizzata per i PC IBM XT con CPU 8088 a 4.77 MHz.  
+È sorprendentemente reattiva ancora oggi: anche la griglia massima (17×17) risponde in circa 1–2 secondi su un XT emulato, e in modo istantaneo su un 286 o 386.
 
 Caratteristiche principali:
----------------------------
-- Grafica VGA a 16 colori (640x480 pixel)
-- Supporto per il mouse, tramite chiamate dirette al BIOS MS-DOS (`INT 33h`)
-- IA avversaria basata su un sistema euristico scritto in BASIC
-- Sistema di punteggi con salvataggio record
-- Semplici effetti sonori DOS
+- grafica in modalità testo, semplice e leggibile;
+- IA lineare e molto ottimizzata;
+- griglie da 10×10 a 17×17;
+- nessuna demo automatica;
+- nessuna grafica VGA.
 
-Il cuore di BLOCK 5 è la sua intelligenza artificiale. All'epoca, senza librerie complesse o framework di machine learning, l'approccio era basato su logiche euristiche.
+È la versione più “giocabile” per chi vuole una partita rapida e leggibile: le griglie più piccole rendono il gioco più tattico e meno dispersivo.
 
-Le principali funzioni IA sono:
--------------------------------
-- Analisi4 e Analisi5: cercano sequenze di 4 o 5 pedine allineate per anticipare vittorie o bloccare l'avversario.
-- AnalisiM (Mosse Migliori): analizza ogni posizione della griglia e assegna punteggi alle caselle, favorendo quelle più strategiche.
-- AnalisiC (Mosse Casuali): mossa di fallback, per giocare anche in assenza di pattern riconoscibili.
-- Strategia a Priorità:
-    1. Vincere subito, se possibile.
-    2. Bloccare una vittoria imminente dell'avversario.
-    3. Cercare mosse con valore strategico (attacco).
-    4. Cercare mosse con valore difensivo (blocco).
-    5. In ultima istanza, una mossa casuale.
+### Versione 1.0 (1990)
+La 1.0 introduce la grafica VGA (SCREEN 12), una presentazione più curata e una demo automatica.  
+È pensata per i PC AT e 386, e include un test CPU per adattare la velocità della demo alle prestazioni della macchina.
 
-Questo sistema consente al computer di sembrare “intenzionale”, pur senza una vera logica predittiva o apprendimento.
+Caratteristiche principali:
+- grafica VGA 640×480;
+- griglia unica 19×19;
+- demo automatica con pausa regolata in base alla CPU;
+- IA identica alla 0.9 ma applicata a un campo molto più grande.
 
-Come Eseguirlo?
----------------
-Nessun problema su sistemi Windows a 32 bit sia sotto cmd che sotto command.
-Per far girare BLOCK 5 su sistemi moderni a 64 bit, avrai bisogno di un emulatore DOS come DOSBox (https://www.dosbox.com/) o DOSBox-X (https://www.dosbox-x.com).
+È la versione più spettacolare, ma anche la più impegnativa: la 19×19 è un campo enorme e richiede più attenzione strategica.
 
-Poiché BLOCK 5 utilizza chiamate a basso livello (CALL INT86OLD) per interagire con mouse e VGA, serve un compilatore Microsoft BASIC come: QuickBASIC 4.5, QBX 7.1, VBDOS 1.0 (Visual Basic for DOS) che puoi cercare online con parole chiave come “QuickBASIC download” e installarlo in una cartella accessibile.
+---
 
-Clona o Scarica questo Repository. Ottieni il file BLOCK5.BAS da questo progetto e compilalo in eseguibile standalone (.EXE) per ottenere il corretto funzionamento del programma.
+## Note tecniche originali (1987)
 
-1. Avvia DOSBox.
-2. Monta la cartella contenente QB.EXE e BLOCK5.BAS:
-   
-   Su Windows:
-      mount c c:\qb45
-      c:
+Alcune scelte presenti nel codice della versione 0.9 possono sembrare insolite a chi programma oggi, ma erano perfettamente logiche nel contesto dei PC IBM XT/AT e del QuickBASIC dell’epoca.
 
-      (Sostituisci “c:\qb45” con il percorso effettivo dove si
-       trovano QB.EXE e BLOCK5.BAS)
+### Dimensione degli array (30×30)
+Gli array `GG(30,30)` e `GV(30,30)` sono volutamente sovradimensionati rispetto alla griglia massima (17×17).  
+Nel 1987 questa era una pratica comune per tre motivi:
 
-   Su Mac/Linux:
-      mount c /Users/tuonome/Percorso/qb45
-      c:
+- programmazione difensiva per evitare errori “out of bounds”;
+- memoria abbondante rispetto alle esigenze (900 interi erano trascurabili);
+- flessibilità per eventuali versioni future.
 
+### Limite di 100 tentativi nella mossa casuale
+La funzione che genera una mossa casuale usa un ciclo:
 
-3. Avvia QuickBASIC
-
-   qb
-
-
-All’interno dell’ambiente QuickBASIC:
-
-- Apri BLOCK5.BAS (menu `File -> Open`)
-- Per eseguirlo: usa `Run -> Start`
-- Per creare un file `.EXE`: usa `Run -> Make EXE File...`
-
-Assicurati di attivare l’opzione "Produce Stand-Alone EXE File".
-
-4. Esecuzione
-
-Una volta compilato, potrai eseguire il gioco semplicemente digitando: BLOCK5
-
-
-Questo è un piccolo progetto personale nato dalla mia passione per la programmazione negli anni '80 e '90.
-Condividerlo oggi significa riportare in vita un po’ di quella creatività vintage che ha formato un'intera generazione.
-Questo software è stato distribuito originariamente come Freeware nel 1990 e dichiarato Public Domain (PD) nel 1994. Chiunque è libero di usare il codice, copiarlo, modificarlo e redistribuirlo liberamente. È comunque gradita una menzione della fonte se usato in altri progetti. Se ti piace questo progetto, sei libero di lasciarmi un saluto tramite il mio profilo GitHub! 
