@@ -5,7 +5,7 @@ L'obiettivo è essere il primo giocatore (o il Computer) a posizionare cinque de
 
 Nato tra il 1987 e il 1990, scritto in QuickBASIC per i PC IBM dell’epoca, è un progetto che attraversa tre anni di evoluzione tecnica e personale: dalla prima versione in modalità testo del 1987, pensata per girare in modo fluido su un PC/XT, alla versione VGA del 1990, più ricca e scenografica, progettata per i nuovi AT e 386, questo progetto è stato il mio primo tentativo di simulare un'Intelligenza Artificiale (IA) in un ambiente di programmazione che, all'epoca, era all'avanguardia per gli hobbisti.
 
-Questo repository raccoglie, restaura e documenta tutte le versioni storiche del gioco, con l’obiettivo di preservare non solo il codice, ma anche le scelte tecniche, le limitazioni hardware e la filosofia di programmazione dell’epoca.
+Questo repository raccoglie, restaura e documenta le versioni del gioco, con l’obiettivo di preservare non solo il codice, ma anche le scelte tecniche, le limitazioni hardware e la filosofia di programmazione dell’epoca.
 
 ---
 
@@ -58,7 +58,7 @@ Caratteristiche principali:
 
 ## Note tecniche originali (1987)
 
-Alcune scelte presenti nel codice della versione 0.9 possono sembrare insolite a chi programma oggi, ma erano perfettamente logiche nel contesto dei PC IBM XT/AT e del QuickBASIC dell’epoca.
+Alcune scelte presenti nel codice possono sembrare insolite a chi programma oggi, ma erano perfettamente logiche nel contesto dei PC IBM XT/AT e del QuickBASIC dell’epoca.
 
 ### Dimensione degli array (30×30)
 Gli array `GG(30,30)` e `GV(30,30)` sono volutamente sovradimensionati rispetto alla griglia massima (17×17).  
@@ -69,5 +69,30 @@ Nel 1987 questa era una pratica comune per tre motivi:
 - flessibilità per eventuali versioni future.
 
 ### Limite di 100 tentativi nella mossa casuale
-La funzione che genera una mossa casuale usa un ciclo:
+La funzione che genera una mossa casuale usa un ciclo FOR k = 1 TO 100
+
+Questa scelta aveva una motivazione precisa:
+
+- **Evitare loop infiniti** quando la zona attorno all’ultima mossa era piena.
+- **Garantire una buona distribuzione casuale** senza rallentare il gioco su un 8088.
+- **Fornire un fallback sicuro**: dopo 100 tentativi, il programma passa alla scansione completa della griglia.
+
+Era un equilibrio ideale tra sicurezza, velocità e semplicità, tipico dei giochi DOS dell’epoca.
+
+### Filosofia prestazionale
+La versione 0.9 è stata progettata per funzionare in modo fluido su macchine molto diverse tra loro:
+
+- **8088 / 4.77 MHz**
+- **80286 / 6–25 MHz**
+- **80386 / 16–33 MHz**
+
+Per questo motivo:
+
+- gli algoritmi sono lineari e prevedibili,
+- la grafica è in modalità testo (SCREEN 0),
+- la logica evita ricorsione e strutture complesse,
+- ogni operazione è pensata per essere eseguita rapidamente anche su un XT.
+
+Queste scelte rendono la 0.9 sorprendentemente reattiva ancora oggi, anche in emulazione.
+
 
